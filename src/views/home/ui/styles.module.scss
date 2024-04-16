@@ -1,0 +1,11 @@
+.container {
+  background-color: beige;
+  /* width: 1440px; */
+  min-height: 100vh;
+  margin-inline: auto;
+  background-color: var(----white);
+  border: 1px solid green;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
