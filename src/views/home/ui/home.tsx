@@ -5,7 +5,7 @@ import { ProductCard } from "@/entities/product-card";
 
 export const Home = () => {
   return (
-    <div className={classnames(styles.container)}>
+    <main className={classnames(styles.container)}>
       <ProductCard />
       <ProductCard />
       <ProductCard />
@@ -15,6 +15,6 @@ export const Home = () => {
       <ProductCard />
       <ProductCard />
       <ProductCard />
-    </div>
+    </main>
   );
 };
