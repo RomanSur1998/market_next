@@ -1,11 +1,10 @@
 .container {
-  background-color: beige;
-  /* width: 1440px; */
   min-height: 100vh;
   margin-inline: auto;
   background-color: var(----white);
   border: 1px solid green;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 4px;
+  margin: 4px 0;
 }

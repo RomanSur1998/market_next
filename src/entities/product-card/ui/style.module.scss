@@ -3,8 +3,9 @@
 }
 
 .card_container {
+  margin: px;
   flex-direction: column;
-  width: 320px;
+  min-width: 320px;
   height: 468px;
   background-color: var(--background);
   padding: 16px;
@@ -55,7 +56,7 @@
   font-weight: 600;
 }
 .images {
-  width: 288px;
+  min-width: 288px;
   height: 288px;
   object-fit: cover;
   cursor: grab;

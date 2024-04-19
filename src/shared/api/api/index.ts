@@ -4,9 +4,13 @@ export const api = {
   getProductList: async () => {
     try {
       const reponse = await axiosConfig.get("?limit=8");
-      return reponse;
+      return reponse.data;
     } catch (error) {
       throw error;
     }
+  },
+  getCategory: async () => {
+    const reponse = await axiosConfig.get("/categories");
+    return reponse.data;
   },
 };

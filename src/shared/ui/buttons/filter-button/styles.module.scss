@@ -1,0 +1,19 @@
+.button {
+  display: flex;
+  padding: 6px 8px;
+  gap: 4px;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  background-color: var(--white);
+  color: var(--gray);
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin: 1px;
+  text-align: center;
+  white-space: nowrap;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 18px;
+}

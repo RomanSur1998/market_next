@@ -1,1 +1,1 @@
-export { CardIcon } from "./card-icon";
+export { CartIcon } from "./cart-icon";

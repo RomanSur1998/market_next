@@ -1,0 +1,46 @@
+@mixin base_style {
+  display: flex;
+}
+
+.filter_container {
+  @include base_style;
+  width: 100%;
+  height: 64px;
+  align-items: center;
+  background-color: var(--background);
+  margin: 0 auto;
+  padding: 18px;
+  gap: 8px;
+}
+
+.show {
+  @include base_style;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background-color: var(--white);
+  cursor: pointer;
+  border-radius: 4px;
+  align-items: center;
+  justify-content: center;
+}
+.card {
+  @include base_style;
+  width: 67px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: none;
+  background-color: white;
+  border-radius: 4px;
+  color: var(--primary);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.cont {
+  @include base_style;
+  width: 100%;
+  border-radius: 4px;
+}

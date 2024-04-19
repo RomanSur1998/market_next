@@ -6,9 +6,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { StarIcon } from "@/shared/ui/icons/star";
-import { CardIcon } from "@/shared/ui/icons/card-icon";
+import { CartIcon } from "@/shared/ui/icons/card-icon";
+import { IProduct } from "@/shared/types/props-types";
 
-export const ProductCard = () => {
+export const ProductCard = ({ elem }: { elem: IProduct }) => {
   const [isShowFullDescr, setIsShowFullDescr] = useState(false);
   return (
     <div className={classnames(styles.flex, styles.card_container)}>
@@ -25,41 +26,13 @@ export const ProductCard = () => {
             modules={[Pagination]}
             className="mySwiper"
           >
-            <SwiperSlide>
-              <img
-                className={styles.images}
-                src="https://i.pinimg.com/564x/d8/37/de/d837dea34066ba80081bfe584b44d24f.jpg"
-                alt=""
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                className={styles.images}
-                src="https://i.pinimg.com/564x/d8/37/de/d837dea34066ba80081bfe584b44d24f.jpg"
-                alt=""
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                className={styles.images}
-                src="https://i.pinimg.com/564x/d8/37/de/d837dea34066ba80081bfe584b44d24f.jpg"
-                alt=""
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                className={styles.images}
-                src="https://i.pinimg.com/564x/d8/37/de/d837dea34066ba80081bfe584b44d24f.jpg"
-                alt=""
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img
-                className={styles.images}
-                src="https://i.pinimg.com/564x/d8/37/de/d837dea34066ba80081bfe584b44d24f.jpg"
-                alt=""
-              />
-            </SwiperSlide>
+            {elem.images.map((image: string) => {
+              return (
+                <SwiperSlide key={image}>
+                  <img className={styles.images} src={image} alt="" />
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
       </div>
@@ -83,7 +56,7 @@ export const ProductCard = () => {
         </p>
         <div className={styles.priceContainer}>
           <button className={styles.buttonPrice}>
-            <CardIcon />
+            <CartIcon color="white" />
             $500
           </button>
           <span>$400</span>

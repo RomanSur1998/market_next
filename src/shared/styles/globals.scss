@@ -53,11 +53,14 @@
 }
 
 .swiper-pagination-bullet {
-  background-color: var(--white) !important;
+  background-color: var(--gray) !important;
   width: 10px !important;
   height: 10px !important;
 }
 
 .swiper-pagination-bullet-active {
-  background-color: var(--gray) !important;
+  background-color: var(--primary) !important;
+}
+.count {
+  display: flex;
 }
