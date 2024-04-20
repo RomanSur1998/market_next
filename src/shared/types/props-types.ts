@@ -5,8 +5,8 @@ export interface HomePapeProp {
 export interface IProduct {
   brand: string;
   category: string;
-  description?: string;
-  discountPercentage?: number;
+  description: string;
+  discountPercentage: number;
   id: number;
   images: string[];
   price: number;

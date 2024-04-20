@@ -12,5 +12,6 @@ export default function Home() {
   const list = useList(model.$productsList, (elem: IProduct) => {
     return <ProductCard elem={elem} />;
   });
-  return <main className={classnames(styles.container)}>{list}</main>;
+
+  return <main className={classnames(styles.container)}> {list}</main>;
 }
