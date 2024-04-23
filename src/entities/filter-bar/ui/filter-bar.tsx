@@ -8,17 +8,23 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FilterButton } from "@/shared/ui/buttons";
 import ScrollContainer from "react-indiana-drag-scroll";
-import { useGate, useList, useUnit } from "effector-react";
+import { useList, useUnit } from "effector-react";
 import { model } from "@/shared/effector/products-list/models";
 import { CancelIcon } from "@/shared/ui/icons";
+import useDebounce from "@/shared/lib/hooks/useDebounce/useDebounce";
+import { Skeleton } from "@/shared/ui/atoms/sckeleton";
 
 export const FilterBar = () => {
   const [isShowSearch, setIsShowSearch] = useState(false);
 
-  useGate(model.HomeGate);
+  const [searchValue, isLoading] = useUnit([
+    model.$searchValue,
+    model.$isLoading,
+  ]);
 
-  const categories = useUnit(model.$limit);
-  console.log(categories);
+  const debonce = useDebounce(searchValue, 500);
+  console.log(debonce, "search");
+
   const list = useList(model.$categoryList, (elem) => {
     return <FilterButton name={elem} />;
   });
@@ -30,12 +36,17 @@ export const FilterBar = () => {
             <button className={styles.show} type="button">
               <SearchIcon />
             </button>
-            <input type="text" placeholder="Search..." />
+            <input
+              type="text"
+              placeholder="Search..."
+              onChange={(e) => model.setSearchValueEvent(e.target.value)}
+            />
           </label>
           <button
             className={styles.cancel}
             onClick={() => {
               setIsShowSearch((prev) => !prev);
+              model.setSearchValueEvent("");
             }}
           >
             <CancelIcon />
@@ -43,23 +54,29 @@ export const FilterBar = () => {
         </form>
       ) : (
         <>
-          <button
-            className={classnames(styles.show)}
-            onClick={() => {
-              setIsShowSearch((prev) => !prev);
-            }}
-          >
-            <SearchIcon />
-          </button>
+          {isLoading ? (
+            <Skeleton width={"100%"} height={28} />
+          ) : (
+            <>
+              <button
+                className={classnames(styles.show)}
+                onClick={() => {
+                  setIsShowSearch((prev) => !prev);
+                }}
+              >
+                <SearchIcon />
+              </button>
 
-          <ScrollContainer className={classnames(styles.cont)}>
-            <FilterButton name={"all"} />
-            {list}
-          </ScrollContainer>
+              <ScrollContainer className={classnames(styles.cont)}>
+                <FilterButton name={"all"} />
+                {list}
+              </ScrollContainer>
+            </>
+          )}
         </>
       )}
 
-      <button className={styles.card}>
+      <button className={styles.card} onClick={model.setIsCartEvent}>
         <CartIcon color={"primary"} /> cart
       </button>
     </div>

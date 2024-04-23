@@ -2,13 +2,13 @@ import { FilterBar } from "@/entities/filter-bar";
 import { Footer } from "@/entities/footer";
 import { model } from "@/shared/effector/products-list/models";
 import Home from "@/views/home/ui/home";
-import { useUnit } from "effector-react";
+import { useGate, useUnit } from "effector-react";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 export default function Main() {
   const { ref, inView } = useInView({
-    threshold: 1,
+    threshold: 0.7,
   });
   const name = useUnit(model.$categoryName);
   useEffect(() => {
@@ -16,6 +16,10 @@ export default function Main() {
       model.setLimitEvent();
     }
   }, [inView]);
+
+  useGate(model.HomeGate);
+
+  const isLoading = useUnit(model.$isLoading);
 
   return (
     <>

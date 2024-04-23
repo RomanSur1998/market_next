@@ -10,8 +10,7 @@ const useDebounce = (value: string, delay: number) => {
     return () => {
       clearInterval(handler);
     };
-  }),
-    [value];
+  }, [value]);
   return debouncedValue;
 };
 

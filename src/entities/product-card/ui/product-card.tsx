@@ -8,7 +8,7 @@ import { Pagination } from "swiper/modules";
 import { StarIcon } from "@/shared/ui/icons/star";
 import { CartIcon } from "@/shared/ui/icons/card-icon";
 import { IProduct } from "@/shared/types/props-types";
-import { getDiscount } from "@/shared/lib/functions";
+import { addProductToLoaclStorage, getDiscount } from "@/shared/lib/functions";
 
 export const ProductCard = ({ elem }: { elem: IProduct }) => {
   function getDescriptinLine(description: string) {
@@ -28,7 +28,7 @@ export const ProductCard = ({ elem }: { elem: IProduct }) => {
       );
     }
   }
-  console.log(elem);
+
   const [isShowFullDescr, setIsShowFullDescr] = useState(false);
   return (
     <div className={classnames(styles.flex, styles.card_container)}>
@@ -97,7 +97,10 @@ export const ProductCard = ({ elem }: { elem: IProduct }) => {
         {getDescriptinLine(elem.description)}
 
         <div className={styles.priceContainer}>
-          <button className={styles.buttonPrice}>
+          <button
+            className={styles.buttonPrice}
+            onClick={() => addProductToLoaclStorage(elem)}
+          >
             <CartIcon color="white" />${elem.price}
           </button>
 

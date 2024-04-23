@@ -15,3 +15,14 @@ export interface IProduct {
   thumbnail?: string;
   title: string;
 }
+
+export interface IProductCart {
+  item: IProduct;
+  count: number;
+  subPrice: number;
+}
+
+export interface IProductListCart {
+  products: IProductCart[];
+  totalPrice: number;
+}

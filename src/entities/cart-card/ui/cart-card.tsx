@@ -1,10 +1,15 @@
 import React from "react";
 import styles from "./styles.module.scss";
+import { IProductCart } from "@/shared/types/props-types";
+import {
+  changeProductCount,
+  deleteCartProduct,
+} from "@/shared/lib/functions/cart-helpers/cart-functions";
 
-export const CartCard = () => {
+export const CartCard = ({ elem }: { elem: IProductCart }) => {
   return (
     <div className={styles.container}>
-      {/* <img src={elem.item.images[0]} className={styles.image} alt="" />
+      <img src={elem.item.images[0]} className={styles.image} alt="" />
       <div className={styles.block}>
         <div className={styles.textBlock}>
           <span>
@@ -16,27 +21,27 @@ export const CartCard = () => {
           <button
             onClick={() => {
               const newCount = elem.count - 1;
-              changeProductCount(newCount, elem.item.id, dispatch);
+              changeProductCount(newCount, elem.item.id);
             }}
           >
             -
           </button>
           <span>
-            {elem.count != 0
+            {elem.count !== 0
               ? elem.count
-              : deleteCartProduct(elem.item.id, dispatch)}
+              : (deleteCartProduct(elem.item.id), "")}
           </span>
           <button
             onClick={() => {
               const newCount = elem.count + 1;
 
-              changeProductCount(newCount, elem.item.id, dispatch);
+              changeProductCount(newCount, elem.item.id);
             }}
           >
             +
           </button>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
