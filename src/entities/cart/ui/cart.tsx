@@ -7,7 +7,7 @@ import { CartCard } from "@/entities/cart-card";
 import { useList, useUnit } from "effector-react";
 import { IProductCart } from "@/shared/types/props-types";
 import { cartModel } from "@/shared/effector/cart-model";
-
+import { useEscListener } from "@/shared/lib/hooks/useEscListener";
 export const Cart = () => {
   const modal = document.getElementById("modal") as HTMLDivElement;
 
@@ -21,13 +21,15 @@ export const Cart = () => {
     return <CartCard elem={elem} />;
   });
 
+  useEscListener(() => setIsCartEvent(false));
+
   return ReactDOM.createPortal(
     <div className={styles.modal}>
       <div className={styles.container}>
         <div className={styles.contorller}>
           <div className={styles.cart_controller}>
             <CartIcon color={"primary"} />
-            <span className={styles.cart}>card</span>
+            <span className={styles.cart}>карточка</span>
           </div>
           <button
             className={styles.button}
@@ -38,7 +40,7 @@ export const Cart = () => {
         </div>
         <div className={styles.block}>{list}</div>
         <div className={styles.total}>
-          <span className={styles.position}> {products.length} positions</span>
+          <span className={styles.position}> {products.length} позиций</span>
           <span className={styles.totalPrice}>
             ${cartProductsList.totalPrice}
           </span>
@@ -47,7 +49,7 @@ export const Cart = () => {
           className={styles.product}
           onClick={() => setIsCartEvent(false)}
         >
-          back to products
+          Вернуться к продуктам
         </button>
       </div>
     </div>,
