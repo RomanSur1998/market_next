@@ -1,4 +1,4 @@
-.flex {
+@mixin flex {
   display: flex;
 }
 
@@ -13,7 +13,8 @@
 }
 
 .discount {
-  display: flex;
+  @include flex();
+
   width: 108px;
   height: 24px;
   background-color: var(--white);
@@ -24,7 +25,8 @@
   justify-content: center;
   margin-bottom: 4px;
   border-radius: 4px;
-  span {
+
+  .discount_text {
     color: var(--primary);
     font-size: 14px;
     font-weight: 500;
@@ -45,12 +47,13 @@
 }
 
 .rating {
+  @include flex();
+
   width: 62px;
   height: 24px;
-  display: flex;
   align-items: center;
   gap: 4px;
-  background-color: #fff;
+  background-color: var(--white);
   border-radius: 4px;
   padding: 4px;
   font-weight: 600;
@@ -62,12 +65,14 @@
   cursor: grab;
 }
 .priceContainer {
-  display: flex;
+  @include flex();
+
   align-items: center;
   gap: 8px;
   position: absolute;
   bottom: 16px;
-  span {
+
+  .price_text {
     color: var(--gray);
     font-size: 14px;
     font-weight: 500;

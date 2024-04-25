@@ -25,7 +25,7 @@
   align-items: center;
   justify-content: center;
 }
-.card {
+.cart {
   @include base_style;
   width: 67px;
   height: 28px;
@@ -33,7 +33,7 @@
   justify-content: center;
   gap: 4px;
   border: none;
-  background-color: white;
+  background-color: var(--white);
   border-radius: 4px;
   color: var(--primary);
   font-size: 15px;
@@ -56,14 +56,14 @@
   height: 28px;
   border-radius: 4px;
 
-  label {
+  .label {
     display: flex;
     align-items: center;
     margin-inline: 6px;
     gap: 10px;
   }
 
-  input {
+  .input {
     flex: 1;
     min-width: 1200px;
     border: none;
@@ -81,4 +81,9 @@
   cursor: pointer;
   margin-right: 6px;
   border: none;
+}
+
+.active {
+  background-color: var(--primary);
+  color: var(--white);
 }

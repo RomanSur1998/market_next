@@ -4,7 +4,8 @@ import {
   IProductListCart,
 } from "@/shared/types/props-types";
 import { calcSubPrice, calcTotalPrice } from "./cart-actions";
-import { model } from "@/shared/effector/products-list/models";
+
+import { cartModel } from "@/shared/effector/cart-model";
 
 export const getCart = () => {
   let cart = JSON.parse(localStorage.getItem("cart") as string);
@@ -46,7 +47,7 @@ export const addProductToLoaclStorage = (product: IProduct) => {
   cart.totalPrice = calcTotalPrice(cart.products);
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  model.addProductToCartEvent(cart);
+  cartModel.addProductToCartEvent(cart);
 };
 
 export const changeProductCount = (count: number, id: number) => {
@@ -62,7 +63,7 @@ export const changeProductCount = (count: number, id: number) => {
   cart.totalPrice = calcTotalPrice(cart.products);
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  model.addProductToCartEvent(cart);
+  cartModel.addProductToCartEvent(cart);
 };
 
 export const deleteCartProduct = (id: number) => {
@@ -75,5 +76,5 @@ export const deleteCartProduct = (id: number) => {
   cart.totalPrice = calcTotalPrice(cart.products);
 
   localStorage.setItem("cart", JSON.stringify(cart));
-  model.addProductToCartEvent(cart);
+  cartModel.addProductToCartEvent(cart);
 };

@@ -1,30 +1,31 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import styles from "./styles.module.scss";
 import { CancelIcon } from "@/shared/ui/icons";
 import { CartIcon } from "@/shared/ui/icons/card-icon";
-import { model } from "@/shared/effector/products-list/models";
 import { CartCard } from "@/entities/cart-card";
-import { useGate, useList, useUnit } from "effector-react";
+import { useList, useUnit } from "effector-react";
 import { IProductCart } from "@/shared/types/props-types";
+import { cartModel } from "@/shared/effector/cart-model";
 
 export const Cart = () => {
-  useGate(model.CartGate);
+  const modal = document.getElementById("modal") as HTMLDivElement;
 
-  const [cartProductsList, setIsCartEvent] = useUnit([
-    model.$cartStorage,
-    model.setIsCartEvent,
+  const [cartProductsList, setIsCartEvent, products] = useUnit([
+    cartModel.$cartStorage,
+    cartModel.setIsCartEvent,
+    cartModel.$products,
   ]);
 
-  const list = useList(model.$products, (elem: IProductCart) => {
+  const list = useList(cartModel.$products, (elem: IProductCart) => {
     return <CartCard elem={elem} />;
   });
-  console.log(cartProductsList, "local");
 
-  return (
+  return ReactDOM.createPortal(
     <div className={styles.modal}>
       <div className={styles.container}>
         <div className={styles.contorller}>
-          <div>
+          <div className={styles.cart_controller}>
             <CartIcon color={"primary"} />
             <span className={styles.cart}>card</span>
           </div>
@@ -37,9 +38,9 @@ export const Cart = () => {
         </div>
         <div className={styles.block}>{list}</div>
         <div className={styles.total}>
-          <span className={styles.position}>1 positions</span>
+          <span className={styles.position}> {products.length} positions</span>
           <span className={styles.totalPrice}>
-            {cartProductsList.totalPrice}
+            ${cartProductsList.totalPrice}
           </span>
         </div>
         <button
@@ -49,6 +50,7 @@ export const Cart = () => {
           back to products
         </button>
       </div>
-    </div>
+    </div>,
+    modal
   );
 };

@@ -1,4 +1,3 @@
-import { model } from "@/shared/effector/products-list/models";
 import { axiosConfig } from "../config/config";
 
 export const api = {

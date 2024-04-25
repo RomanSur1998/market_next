@@ -1,7 +1,9 @@
 import { IProductCart, IProductListCart } from "@/shared/types/props-types";
 
 export function getCountProductsInCart() {
-  const cart: IProductListCart = JSON.parse(localStorage.getItem("cart"));
+  const cart: IProductListCart = JSON.parse(
+    localStorage.getItem("cart") as string
+  );
   return cart ? cart.products.length : 0;
 }
 
